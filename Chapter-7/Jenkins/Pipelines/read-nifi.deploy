@@ -9,14 +9,14 @@ pipeline {
     stage('Test NiFi'){
         steps {
             script {
-                sh('sudo /opt/nifi-toolkit/bin/cli.sh session set nifi.props /opt/nifi-toolkit/nifi-envs/nifi-${NIFI_ENV} && /opt/nifi-toolkit/bin/cli.sh nifi get-root-id')
+                sh('sudo /opt/nifi-toolkit/bin/cli.sh session set nifi.props /opt/nifi-toolkit/nifi-envs/nifi-${NIFI_ENV} && sudo /opt/nifi-toolkit/bin/cli.sh nifi get-root-id')
             }
         }
     }
     stage('Test Registry'){
         steps {
             script {
-                sh('sudo /opt/nifi-toolkit/bin/cli.sh session set nifi.reg.props /opt/nifi-toolkit/nifi-envs/registry-${REGISTRY_ENV} && /opt/nifi-toolkit/bin/cli.sh registry list-buckets')
+                sh('sudo /opt/nifi-toolkit/bin/cli.sh session set nifi.reg.props /opt/nifi-toolkit/nifi-envs/registry-${REGISTRY_ENV} && sudo /opt/nifi-toolkit/bin/cli.sh registry list-buckets')
             }
         }
     }
