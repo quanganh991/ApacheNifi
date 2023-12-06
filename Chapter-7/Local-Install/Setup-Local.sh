@@ -8,9 +8,9 @@ export nifi_dev_port='8083'
 
 
 cd /opt
-wget https://archive.apache.org/dist/nifi/${version}/nifi-${version}-bin.zip
-wget https://archive.apache.org/dist/nifi/${version}/nifi-toolkit-${version}-bin.zip
-wget https://archive.apache.org/dist/nifi/${version}/nifi-registry-${version}-bin.zip
+# wget https://archive.apache.org/dist/nifi/${version}/nifi-${version}-bin.zip
+# wget https://archive.apache.org/dist/nifi/${version}/nifi-toolkit-${version}-bin.zip
+# wget https://archive.apache.org/dist/nifi/${version}/nifi-registry-${version}-bin.zip
 
 unzip nifi-${version}-bin.zip -d /opt/nifi-prd && cd  /opt/nifi-prd/nifi-${version} &&  mv * .. && cd .. && rm -rf nifi-${version}
 cd /opt
