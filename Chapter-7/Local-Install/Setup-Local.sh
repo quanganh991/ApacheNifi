@@ -1,4 +1,3 @@
-sudo su
 export version='1.16.1'
 export nifi_registry_port='18080'
 export nifi_prd_port='8081'
@@ -120,6 +119,6 @@ echo " Start NiFi DEV"
 echo "### Adding Registry Client to PRD"
 /opt/nifi-toolkit/bin/cli.sh nifi create-reg-client --baseUrl http://localhost:${nifi_prd_port} --registryClientUrl http://localhost:${nifi_registry_port} --registryClientName PRD
 echo "### Adding Registry Client to STG"
-/opt/nifi-toolkit/bin/cli.sh nifi create-reg-client --baseUrl http://localhost:${nifi_stg_port}  --registryClientUrl http://localhost:${nifi_registry_port} --registryClientName STG
+/opt/nifi-toolkit/bin/cli.sh nifi create-reg-client --baseUrl http://localhost:${nifi_stg_port}  --registryClientUrl http://localhost:${nifi_registry_port} --registryClientName PRD
 echo "### Adding Registry Client to DEV"
-/opt/nifi-toolkit/bin/cli.sh nifi create-reg-client --baseUrl http://localhost:${nifi_dev_port}  --registryClientUrl http://localhost:${nifi_registry_port} --registryClientName DEV
+/opt/nifi-toolkit/bin/cli.sh nifi create-reg-client --baseUrl http://localhost:${nifi_dev_port}  --registryClientUrl http://localhost:${nifi_registry_port} --registryClientName PRD
