@@ -28,11 +28,11 @@ pipeline {
                         echo "Running Enable Services"
                         sudo /opt/nifi-toolkit/bin/cli.sh nifi pg-enable-services pg-enable-services --processGroupId \${PG_IMPORTED_ID}
                     else
-                        echo ""
+                        echo "========NOT Running Enable Services"
                     fi 
                     echo 'Running status checks'
-                    echo '/opt/nifi-toolkit/bin/cli.sh nifi pg-status --processGroupId \$PG_IMPORTED_ID'
-                    export PG_STATUS_INVALID=`sudo /opt/nifi-toolkit/bin/cli.sh nifi pg-status --processGroupId \$PG_IMPORTED_ID | tail -n +4 | awk '{print \$7}' | sed '\$ d' | sort -nr | head -n 1` &&
+                    echo '/opt/nifi-toolkit/bin/cli.sh nifi pg-status --processGroupId \${PG_IMPORTED_ID}'
+                    export PG_STATUS_INVALID=`sudo /opt/nifi-toolkit/bin/cli.sh nifi pg-status --processGroupId \${PG_IMPORTED_ID} | tail -n +4 | awk '{print \$7}' | sed '\$ d' | sort -nr | head -n 1` &&
                     if [ \${PG_STATUS_INVALID} == 0 ]
                     then
                         echo "All components are in valid state"
@@ -44,7 +44,7 @@ pipeline {
                         echo "Starting PG"
                         sudo /opt/nifi-toolkit/bin/cli.sh nifi pg-start --processGroupId \${PG_IMPORTED_ID}
                     else
-                        echo ""
+                        echo "=========NOT Starting PG"
                     fi 
                     """)
                 }
