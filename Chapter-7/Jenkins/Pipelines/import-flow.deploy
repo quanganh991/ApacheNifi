@@ -23,7 +23,7 @@ pipeline {
                     sudo /opt/nifi-toolkit/bin/cli.sh session set nifi.props /opt/nifi-toolkit/nifi-envs/nifi-\${NIFI_TARGET_ENV} && 
                     export PG_IMPORTED_ID=`sudo /opt/nifi-toolkit/bin/cli.sh nifi pg-import --bucketIdentifier \${BUCKET_IDENTIFIER} --flowIdentifier \${FLOW_IDENTIFIER} --flowVersion \${FLOW_VERSION} | tail -n 1`
                     echo '####### PG Imported with Success\n'
-                    if [ \${FLOW_ENABLE} == "YES" ]
+                    if [ \${FLOW_ENABLE} = "YES" ]
                     then
                         echo "Running Enable Services"
                         sudo /opt/nifi-toolkit/bin/cli.sh nifi pg-enable-services pg-enable-services --processGroupId \${PG_IMPORTED_ID}
@@ -33,13 +33,13 @@ pipeline {
                     echo 'Running status checks'
                     echo '/opt/nifi-toolkit/bin/cli.sh nifi pg-status --processGroupId \${PG_IMPORTED_ID}'
                     export PG_STATUS_INVALID=`sudo /opt/nifi-toolkit/bin/cli.sh nifi pg-status --processGroupId \${PG_IMPORTED_ID} | tail -n +4 | awk '{print \$7}' | sed '\$ d' | sort -nr | head -n 1` &&
-                    if [ \${PG_STATUS_INVALID} == 0 ]
+                    if [ \${PG_STATUS_INVALID} = 0 ]
                     then
                         echo "All components are in valid state"
                     else
                         echo "Invalid componenets found - Please Review"
                     fi 
-                    if [ \${FLOW_START} == "YES" ]
+                    if [ \${FLOW_START} = "YES" ]
                     then
                         echo "Starting PG"
                         sudo /opt/nifi-toolkit/bin/cli.sh nifi pg-start --processGroupId \${PG_IMPORTED_ID}
